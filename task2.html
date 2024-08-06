@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>task 2</title>
+    <style>
+        .game{
+            text-align: center;
+            margin:234px 390px;
+            background-color: aqua;
+            border: 7px solid red;
+        }
+       
+        .game #button{
+
+            background-color: rgb(94 115 121);
+            color: aliceblue;
+            height: 40px;
+            width: 117px;
+            border-radius: 32px;
+            margin-bottom: 29px;
+
+        }
+        #button:hover{
+            cursor: pointer;
+            background-color: black;
+            color:aliceblue;
+
+        }
+       
+        #userguess{
+            height:32px;
+        }
+        #success{
+            color:green;
+            text-align: center;
+            margin-top: 230px;
+
+            margin-bottom:-192px;
+        }
+        #fail{
+            color:red;
+            text-align: center;
+            margin-top: 230px;
+
+            margin-bottom:-192px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1 id="success"></h1>
+    <h1 color:"red" text-align:"center" id="fail"></h1>
+    <div class="game">
+
+        <h1>Random number game</h1><br><br>
+        <input type="number" value="Enter number" id="userguess" max="100" ><br><br>
+        <input type="submit" value="Submit" id="button" onclick="game()">
+        <p id="answer"></p>
+    
+    </div>
+   <script>
+    let random = Math.floor(Math.random() * 100) + 1;
+    let attempts=0;
+
+    function game(){
+        document.getElementById("fail").innerHTML=" "; 
+        document.getElementById("answer").innerHTML=""; 
+        document.getElementById("success").innerHTML=""; 
+        
+        const number= document.getElementById("userguess").value;
+        
+       const answer = document.getElementById("answer");
+       attempts++;
+        
+        if(!number || number==""){
+            document.getElementById("fail").innerHTML="Please enter valid number";
+            return false;
+        }else if(number<random){
+            document.getElementById("answer").innerHTML="<h3>You Guess less Number ....Enter second number</h3>";
+            return false;
+        }else if(number>random){
+             document.getElementById("answer").innerHTML="<h3>You Guess high Number .... Enter second number</h3>";
+             return false;
+        }
+        else
+        {
+            document.getElementById("success").innerHTML=`Congratulations! You've guessed the correct number ${random} in ${attempts} attempts.`;
+                document.getElementById("button").disabled = true;
+        }
+    }
+   </script>
+
+   
+</body>
+</html>
